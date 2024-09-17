@@ -66,6 +66,9 @@ const TurnSlider: FC<TurnSliderProps> = ({
 
   const onClickSliderButton = () => {
     if (sliderContent === '▶') {
+      if (visualizerSettingInfo.turn >= visualizerSettingInfo.maxTurn) {
+        visualizerSettingInfo.turn = 0;
+      }
       startSlider();
     } else {
       stopSlider();
