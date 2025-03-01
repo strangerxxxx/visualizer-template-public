@@ -93,7 +93,7 @@ const SvgViewer: FC<SvgViewerProps> = ({ visualizerSettingInfo }) => {
         if (t === maxTurn) {
           gif.addFrame(canvas, { delay: 3000 });
         } else {
-          gif.addFrame(canvas, { delay: delay });
+          gif.addFrame(canvas, { delay });
         }
         if (t < maxTurn) {
           addFrame(Math.min(t + step, maxTurn));

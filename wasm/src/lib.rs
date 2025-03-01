@@ -2,8 +2,8 @@ use wasm_bindgen::prelude::*;
 mod util;
 
 #[wasm_bindgen]
-pub fn gen(seed: i32) -> String {
-    util::gen(seed as usize).to_string()
+pub fn gen(seed: i32, problem_id: String) -> String {
+    problem_id
 }
 
 #[wasm_bindgen(getter_with_clone)]
