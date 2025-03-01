@@ -3,7 +3,7 @@ mod util;
 
 #[wasm_bindgen]
 pub fn gen(seed: i32) -> String {
-    util::gen(seed as usize).to_string()
+    util::gen((seed as usize).try_into().unwrap()).to_string()
 }
 
 #[wasm_bindgen(getter_with_clone)]
@@ -30,5 +30,5 @@ pub fn vis(_input: String, _output: String, turn: usize) -> Ret {
 pub fn get_max_turn(_input: String, _output: String) -> usize {
     let input = util::parse_input(&_input);
     let output = util::parse_output(&input, &_output);
-    0
+    output.ok().unwrap().out.len()
 }
