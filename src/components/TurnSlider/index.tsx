@@ -64,6 +64,14 @@ const TurnSlider: FC<TurnSliderProps> = ({
     }
   }, [stopSlider, visualizerSettingInfo.turn, visualizerSettingInfo.maxTurn]);
 
+  // sliderSpeedが変更されたら速度を即時変更する
+  useEffect(() => {
+    if (intervalId) {
+      stopSlider();
+      startSlider();
+    }
+  }, [sliderSpeed]);
+
   const onClickSliderButton = () => {
     if (sliderContent === '▶') {
       if (visualizerSettingInfo.turn >= visualizerSettingInfo.maxTurn) {
