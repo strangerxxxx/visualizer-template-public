@@ -6,14 +6,14 @@ export const useDownloadInput = (): {
     seed: number,
     problemNumber: string,
     downloadCases: number,
-    setButtonText: (content: string) => void
+    setButtonText: (content: string) => void,
   ) => void;
 } => {
   const downloadInput = (
     seed: number,
     problemId: string,
     downloadCases: number,
-    setButtonText: (content: string) => void
+    setButtonText: (content: string) => void,
   ): void => {
     const zip = new JSZip();
     for (let i = 0; i < downloadCases; i++) {
@@ -24,7 +24,7 @@ export const useDownloadInput = (): {
     zip
       .generateAsync({ type: 'blob' }, (e) => {
         setButtonText(
-          String(Math.round(e.percent)).padStart(3, ' ') + '% finished'
+          String(Math.round(e.percent)).padStart(3, ' ') + '% finished',
         );
       })
       .then((blob) => {

@@ -10,7 +10,7 @@ type SvgViewerProps = {
 
 const SvgViewer: FC<SvgViewerProps> = ({ visualizerSettingInfo }) => {
   const [animationButtonDescription, setAnimationButtonDescription] = useState(
-    'Save as Animation GIF'
+    'Save as Animation GIF',
   );
 
   const [animationButtonDisabled, setAnimationButtonDisabled] = useState(false);
@@ -19,7 +19,7 @@ const SvgViewer: FC<SvgViewerProps> = ({ visualizerSettingInfo }) => {
     const ret = vis(
       visualizerSettingInfo.input,
       visualizerSettingInfo.output,
-      visualizerSettingInfo.turn
+      visualizerSettingInfo.turn,
     );
     const svg = new DOMParser()
       .parseFromString(ret.svg, 'image/svg+xml')
@@ -60,7 +60,7 @@ const SvgViewer: FC<SvgViewerProps> = ({ visualizerSettingInfo }) => {
     });
     gif.on('progress', function (p) {
       setAnimationButtonDescription(
-        String(Math.round(50 + 50 * p)).padStart(3, ' ') + '% finished'
+        String(Math.round(50 + 50 * p)).padStart(3, ' ') + '% finished',
       );
       /*
       save_gif.value =
@@ -75,7 +75,8 @@ const SvgViewer: FC<SvgViewerProps> = ({ visualizerSettingInfo }) => {
         */
 
       setAnimationButtonDescription(
-        String(Math.round((50.0 * t) / maxTurn)).padStart(3, ' ') + '% finished'
+        String(Math.round((50.0 * t) / maxTurn)).padStart(3, ' ') +
+          '% finished',
       );
       const svgData = vis(input, output, t).svg;
       const svg = new DOMParser()

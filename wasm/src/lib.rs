@@ -1,10 +1,7 @@
+mod impl_vis;
+
 use wasm_bindgen::prelude::*;
 mod util;
-
-#[wasm_bindgen]
-pub fn gen(seed: i32, problem_id: String) -> String {
-    problem_id
-}
 
 #[wasm_bindgen(getter_with_clone)]
 pub struct Ret {
@@ -14,21 +11,23 @@ pub struct Ret {
 }
 
 #[wasm_bindgen]
-pub fn vis(_input: String, _output: String, turn: usize) -> Ret {
-    let input = util::parse_input(&_input);
-    let str: &str = &_output;
-    let output = util::parse_output(&input, &str);
-    let (score, err, svg) = util::vis(&input, &output.unwrap(), turn);
-    Ret {
-        score: score as i64,
-        err,
-        svg,
-    }
+pub fn gen(seed: i32, problem_id: String) -> String {
+    impl_vis::generate(seed, &problem_id)
 }
 
 #[wasm_bindgen]
-pub fn get_max_turn(_input: String, _output: String) -> usize {
-    let input = util::parse_input(&_input);
-    let output = util::parse_output(&input, &_output);
-    0
+pub fn get_max_turn(input: String, output: String) -> usize {
+    impl_vis::calc_max_turn(&input, &output)
+}
+
+#[wasm_bindgen]
+pub fn vis(input: String, output: String, turn: usize) -> Ret {
+    match impl_vis::visualize(&input, &output, turn) {
+        Ok((score, err, svg)) => Ret { score, err, svg },
+        Err(e) => Ret {
+            score: 0,
+            err: e,
+            svg: String::new(),
+        },
+    }
 }

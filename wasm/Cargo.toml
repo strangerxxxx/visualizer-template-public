@@ -9,8 +9,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = "0.2.89"
-delaunator = "1.0.1"
-web-sys = {"version" = "0.3.44", features=['console']}
 getrandom = { version = "0.2.15", features = ["js"] }
 
 # 以下AtCoder最新環境
@@ -19,9 +17,10 @@ rand_chacha = "=0.3.1"
 rand_distr = "=0.4.3"
 itertools = "=0.11.0"
 proconio = { version = "=0.4.5", features = ["derive"] }
-
-svg = "0.17.0"
 clap = { version = "=4.3.19", features = ["derive"] }
+svg = "0.17.0"
+delaunator = "1.0.1"
+web-sys = {"version" = "0.3.44", features=['console']}
 
 [profile.dev]
 overflow-checks = false
